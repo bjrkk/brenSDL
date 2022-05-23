@@ -169,9 +169,7 @@ int main(int argc, char *argv[]) {
 		pre_pc = SDL_GetPerformanceCounter();
 
 		float delta_time = 0;
-		if (delta_pc > 0) {
-			delta_time = (delta_pc / (float)SDL_GetPerformanceFrequency());
-		}
+		delta_time = delta_pc / (float)SDL_GetPerformanceFrequency();
 
 		char info[512];
 		snprintf(info, sizeof(info), "fps: %.2f\n", 1.f / delta_time);
