@@ -1,0 +1,83 @@
+{
+	"version": 3,
+	"configurePresets": [
+	  {
+		"name": "base",
+		"hidden": true,
+		"generator": "Ninja",
+		"binaryDir": "${sourceDir}/build"
+	  },
+	  {
+		"name": "msvc:base",
+		"inherits": "base",
+		"hidden": true,
+		"cacheVariables": {
+		  "CMAKE_CXX_COMPILER": "cl",
+		  "SDL2_DIR": "${sourceDir}/sdl2"
+		},
+		"condition": {
+		  "type": "equals",
+		  "lhs": "${hostSystemName}",
+		  "rhs": "Windows"
+		}
+	  },
+	  {
+		"name": "msvc:x86:base",
+		"inherits": "msvc:base",
+		"hidden": true,
+		"architecture": {
+		  "value": "x86",
+		  "strategy": "external"
+		}
+	  },
+	  {
+		"name": "msvc:x86:base:fixed",
+		"inherits": "msvc:x86:base",
+		"hidden": true,
+		"cacheVariables": {
+			"USE_FIXED_POINT_BRENDER": true
+		}
+	  },
+	  {
+		"name": "msvc:x86:base:float",
+		"inherits": "msvc:x86:base",
+		"hidden": true,
+		"cacheVariables": {
+			"USE_FIXED_POINT_BRENDER": false
+		}
+	  },
+	  {
+		"displayName": "MSVC x86 Release (fixed point)",
+		"name": "x86:msvc:release:fixed",
+		"inherits": "msvc:x86:base:fixed",
+		"cacheVariables": {
+		  "CMAKE_BUILD_TYPE": "Release"
+		}
+	  },
+	  {
+		"displayName": "MSVC x86 Debug (fixed point)",
+		"name": "x86:msvc:debug:fixed",
+		"inherits": "msvc:x86:base:fixed",
+		"cacheVariables": {
+		  "CMAKE_BUILD_TYPE": "Debug"
+		}
+	  },
+	  {
+		"displayName": "MSVC x86 Release (floating point)",
+		"name": "x86:msvc:release:float",
+		"inherits": "msvc:x86:base:float",
+		"cacheVariables": {
+		  "CMAKE_BUILD_TYPE": "Release"
+		}
+	  },
+	  {
+		"displayName": "MSVC x86 Debug (floating point)",
+		"name": "x86:msvc:debug:float",
+		"inherits": "msvc:x86:base:float",
+		"cacheVariables": {
+		  "CMAKE_BUILD_TYPE": "Debug"
+		}
+	  }
+	]
+  }
+  

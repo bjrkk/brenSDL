@@ -9,3 +9,12 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+.vscode
+.vs
+.cache
+
+build
+
+sdl2/*
+!sdl2/sdl2-config.cmake
